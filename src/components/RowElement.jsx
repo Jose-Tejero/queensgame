@@ -39,6 +39,11 @@ function RowElement({
     return isForbidden1 || isForbidden2 || isForbidden3 || isForbidden4;
   };
 
+  const handleQueenInicialState = (posRow, powCol) => {
+
+    return posRow === 0 && powCol === 2 ? 2 : 0;
+  };
+
   return (
     <div className='table-row'>
       {Array.from({ length: numCells }).map((_, index) => (
@@ -51,6 +56,7 @@ function RowElement({
           isColForbidden={isColForbidden(index + 1)}
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
           color={mapa94[indexRow][index]}
+          inicialState={handleQueenInicialState(indexRow, index)}
         />
       ))}
     </div>

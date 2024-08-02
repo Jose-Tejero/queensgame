@@ -11,8 +11,9 @@ function Cell({
   isColForbidden,
   isCornerForbidden,
   color,
+  inicialState,
 }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(inicialState);
 
   const handleClick = () => {
     const newCount = (count + 1) % 3;
