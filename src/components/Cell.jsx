@@ -12,6 +12,7 @@ function Cell({
   isCornerForbidden,
   color,
   inicialState,
+  isBlocked,
 }) {
   const [count, setCount] = useState(inicialState);
 
@@ -51,6 +52,7 @@ function Cell({
       style={{ backgroundColor: color }}
       className='styled-button'
       onClick={handleClick}
+      disabled={isBlocked}
     >
       {renderIcon()}
     </button>

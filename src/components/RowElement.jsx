@@ -12,8 +12,8 @@ function RowElement({
   isRowForbidden,
   isColForbidden,
   rules,
+  initialQueens,
 }) {
-  
   useEffect(() => {
     console.log('Rules changed');
   }, [rules]);
@@ -39,9 +39,13 @@ function RowElement({
     return isForbidden1 || isForbidden2 || isForbidden3 || isForbidden4;
   };
 
-  const handleQueenInicialState = (posRow, powCol) => {
+  const handleQueenInicialState = (posRow, posCol) => {
 
-    return posRow === 0 && powCol === 2 ? 2 : 0;
+    const queenExists = initialQueens.some(
+      (element) => element.indexRow === posRow + 1 && element.indexCol === posCol + 1
+    );
+
+    return queenExists ? 2 : 0;
   };
 
   return (
@@ -57,6 +61,7 @@ function RowElement({
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
           color={mapa94[indexRow][index]}
           inicialState={handleQueenInicialState(indexRow, index)}
+          isBlocked={handleQueenInicialState(indexRow, index)}
         />
       ))}
     </div>
