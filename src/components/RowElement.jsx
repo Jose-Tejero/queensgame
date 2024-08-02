@@ -13,36 +13,37 @@ function RowElement({
   isColForbidden,
   rules,
   initialQueens,
+  isColorForbidden,
 }) {
   useEffect(() => {
-    console.log('Rules changed');
+    console.log('Rules changed', rules);
   }, [rules]);
 
-  const handleQueenRendered = (indexCol) => {
-    onQueenRenderedPrincipal(indexRow, indexCol);
+  const handleQueenRendered = (indexCol, color) => {
+    onQueenRenderedPrincipal(indexRow, indexCol, color);
   };
 
-  const handleRemoveQueen = (indexCol) => {
-    onRemoveQueenPrincipal(indexRow, indexCol);
+  const handleRemoveQueen = (indexCol, color) => {
+    onRemoveQueenPrincipal(indexRow, indexCol, color);
   };
 
   const handleSetCornerForbidden = (indexRowPick, indexColPick) => {
     const value =
       Math.sqrt(indexRowPick ** 2 + indexColPick ** 2) +
-      Math.tan(-indexRowPick / indexColPick);
+      Math.atan(-indexRowPick / indexColPick);
 
-    const isForbidden1 = rules.forbiddenDiagonal1?.includes(value);
-    const isForbidden2 = rules.forbiddenDiagonal2?.includes(value);
-    const isForbidden3 = rules.forbiddenDiagonal3?.includes(value);
-    const isForbidden4 = rules.forbiddenDiagonal4?.includes(value);
+    const isForbidden1 = rules.topLeftCornerForbidden?.includes(value);
+    const isForbidden2 = rules.topRightCornerForbidden?.includes(value);
+    const isForbidden3 = rules.bottomLeftCornerForbidden?.includes(value);
+    const isForbidden4 = rules.bottomRightCornerForbidden?.includes(value);
 
     return isForbidden1 || isForbidden2 || isForbidden3 || isForbidden4;
   };
 
   const handleQueenInicialState = (posRow, posCol) => {
-
     const queenExists = initialQueens.some(
-      (element) => element.indexRow === posRow + 1 && element.indexCol === posCol + 1
+      (element) =>
+        element.indexRow === posRow + 1 && element.indexCol === posCol + 1
     );
 
     return queenExists ? 2 : 0;
@@ -62,6 +63,7 @@ function RowElement({
           color={mapa94[indexRow][index]}
           inicialState={handleQueenInicialState(indexRow, index)}
           isBlocked={handleQueenInicialState(indexRow, index)}
+          isColorForbidden={isColorForbidden(mapa94[indexRow][index])}
         />
       ))}
     </div>

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import RowElement from './components/RowElement';
 
 function App() {
-  
   const initialQueens = [
     { indexRow: 1, indexCol: 2 },
     { indexRow: 2, indexCol: 7 },
@@ -12,41 +11,44 @@ function App() {
   const [count, setCount] = useState(5);
   const [queenPosition, setQueenPosition] = useState(initialQueens);
   const [polarQueen, setPolarQueen] = useState([]);
+  const [queenColor, setQueenColor] = useState(['#8B0000', '#2E8B57']);
   const [rules, setRules] = useState({
-    forbiddenDiagonal1: [],
-    forbiddenDiagonal2: [],
-    forbiddenDiagonal3: [],
-    forbiddenDiagonal4: [],
+    topLeftCornerForbidden: [],
+    topRightCornerForbidden: [],
+    bottomLeftCornerForbidden: [],
+    bottomRightCornerForbidden: [],
+    colorForbidden: [],
   });
 
   useEffect(() => {
     setRules({
       forbiddenRows: queenPosition.map((pos) => pos.indexRow),
       forbiddenCols: queenPosition.map((pos) => pos.indexCol),
-      forbiddenDiagonal1: queenPosition.map(
+      topLeftCornerForbidden: queenPosition.map(
         (pos) =>
           Math.sqrt((pos.indexRow - 1) ** 2 + (pos.indexCol - 1) ** 2) +
-          Math.tan(-(pos.indexRow - 1) / (pos.indexCol - 1))
+          Math.atan(-(pos.indexRow - 1) / (pos.indexCol - 1))
       ),
-      forbiddenDiagonal2: queenPosition.map(
+      topRightCornerForbidden: queenPosition.map(
         (pos) =>
           Math.sqrt((pos.indexRow - 1) ** 2 + (pos.indexCol + 1) ** 2) +
-          Math.tan(-(pos.indexRow - 1) / (pos.indexCol + 1))
+          Math.atan(-(pos.indexRow - 1) / (pos.indexCol + 1))
       ),
-      forbiddenDiagonal3: queenPosition.map(
+      bottomLeftCornerForbidden: queenPosition.map(
         (pos) =>
           Math.sqrt((pos.indexRow + 1) ** 2 + (pos.indexCol - 1) ** 2) +
-          Math.tan(-(pos.indexRow + 1) / (pos.indexCol - 1))
+          Math.atan(-(pos.indexRow + 1) / (pos.indexCol - 1))
       ),
-      forbiddenDiagonal4: queenPosition.map(
+      bottomRightCornerForbidden: queenPosition.map(
         (pos) =>
           Math.sqrt((pos.indexRow + 1) ** 2 + (pos.indexCol + 1) ** 2) +
-          Math.tan(-(pos.indexRow + 1) / (pos.indexCol + 1))
+          Math.atan(-(pos.indexRow + 1) / (pos.indexCol + 1))
       ),
+      colorForbidden: queenColor,
     });
   }, [queenPosition]);
 
-  const handleQueenRenderedPrincipal = (indexRow, indexCol) => {
+  const handleQueenRenderedPrincipal = (indexRow, indexCol, color) => {
     const newPosition = { indexRow: indexRow + 1, indexCol: indexCol + 1 };
     const positionExists = queenPosition.some(
       (pos) =>
@@ -62,7 +64,7 @@ function App() {
 
     const newPolarPosition =
       Math.sqrt((indexRow + 1) ** 2 + (indexCol + 1) ** 2) +
-      Math.tan(-(indexRow + 1) / (indexCol + 1));
+      Math.atan(-(indexRow + 1) / (indexCol + 1));
     const positionExistsPolar = polarQueen.some(
       (pos) => pos === newPolarPosition
     );
@@ -72,9 +74,13 @@ function App() {
     } else {
       console.log('Position already exists');
     }
+
+    const newColorForbidden = color;
+
+    setQueenColor([...queenColor, newColorForbidden]);
   };
 
-  const handleRemoveQueenPrincipal = (indexRow, indexCol) => {
+  const handleRemoveQueenPrincipal = (indexRow, indexCol, color) => {
     const updateQueenPositions = queenPosition.filter(
       (pos) => !(pos.indexRow === indexRow + 1 && pos.indexCol === indexCol + 1)
     );
@@ -84,9 +90,19 @@ function App() {
       (pos) =>
         pos !==
         Math.sqrt((indexRow + 1) ** 2 + (indexCol + 1) ** 2) +
-          Math.tan(-(indexRow + 1) / (indexCol + 1))
+          Math.atan(-(indexRow + 1) / (indexCol + 1))
     );
     setPolarQueen(updatePolarQueen);
+
+    const indexToRemove = queenColor.findIndex((col) => col === color);
+    const updateColorQueen =
+      indexToRemove !== -1
+        ? [
+            ...queenColor.slice(0, indexToRemove),
+            ...queenColor.slice(indexToRemove + 1),
+          ]
+        : queenColor;
+    setQueenColor(updateColorQueen);
   };
 
   const isRowForbidden = (indexRow) => {
@@ -96,6 +112,11 @@ function App() {
 
   const isColForbidden = (indexCol) => {
     const count = rules.forbiddenCols?.filter((col) => col === indexCol).length;
+    return count > 1;
+  };
+
+  const isColorForbidden = (color) => {
+    const count = rules.colorForbidden?.filter((col) => col === color).length;
     return count > 1;
   };
 
@@ -128,6 +149,7 @@ function App() {
             isColForbidden={isColForbidden}
             rules={rules}
             initialQueens={initialQueens}
+            isColorForbidden={isColorForbidden}
           />
         ))}
       </div>

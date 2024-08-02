@@ -13,6 +13,7 @@ function Cell({
   color,
   inicialState,
   isBlocked,
+  isColorForbidden,
 }) {
   const [count, setCount] = useState(inicialState);
 
@@ -20,10 +21,10 @@ function Cell({
     const newCount = (count + 1) % 3;
     setCount(newCount);
     if (newCount === 2 && onQueenRendered) {
-      onQueenRendered(indexCol);
+      onQueenRendered(indexCol, color);
     }
     if (newCount === 0 && onRemoveQueen) {
-      onRemoveQueen(indexCol);
+      onRemoveQueen(indexCol, color);
     }
   };
 
@@ -36,7 +37,7 @@ function Cell({
           <IconChessQueen
             style={{
               color:
-                isRowForbidden | isColForbidden | isCornerForbidden
+                isRowForbidden | isColForbidden | isCornerForbidden | isColorForbidden
                   ? '#FFA500'
                   : 'white',
             }}
