@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import RowElement from './components/RowElement';
 
 function App() {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(5);
   const [queenPosition, setQueenPosition] = useState([]);
   const [polarQueen, setPolarQueen] = useState([]);
   const [rules, setRules] = useState({
