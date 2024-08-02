@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import RowElement from './components/RowElement';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(4);
   const [queenPosition, setQueenPosition] = useState([]);
   const [polarQueen, setPolarQueen] = useState([]);
   const [rules, setRules] = useState({
@@ -14,9 +14,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log('Hay Queens en:', queenPosition);
-    console.log('Hay Queens polarmente en:', polarQueen);
-
     setRules({
       forbiddenRows: queenPosition.map((pos) => pos.indexRow),
       forbiddenCols: queenPosition.map((pos) => pos.indexCol),
@@ -60,8 +57,6 @@ function App() {
     const newPolarPosition =
       Math.sqrt((indexRow + 1) ** 2 + (indexCol + 1) ** 2) +
       Math.tan(-(indexRow + 1) / (indexCol + 1));
-      console.log('Magnitud:', Math.sqrt((indexRow + 1) ** 2 + (indexCol + 1) ** 2));
-      console.log('Angulo:', Math.tan(-(indexRow + 1) / (indexCol + 1)));
     const positionExistsPolar = polarQueen.some(
       (pos) => pos === newPolarPosition
     );
@@ -101,7 +96,7 @@ function App() {
   return (
     <>
       <h1>Queen's game</h1>
-      <h2>Level</h2>
+      {/* <h2>Level</h2>
       <button
         onClick={() => setCount((count) => (count > 0 ? count - 1 : 0))}
         disabled={count == 0 ? true : false}
@@ -114,7 +109,7 @@ function App() {
         disabled={count == 4 ? true : false}
       >
         +
-      </button>
+      </button> */}
       <div className='card'>
         {Array.from({ length: count + 4 }).map((_, index) => (
           <RowElement

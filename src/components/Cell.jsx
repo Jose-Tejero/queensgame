@@ -10,6 +10,7 @@ function Cell({
   isRowForbidden,
   isColForbidden,
   isCornerForbidden,
+  color,
 }) {
   const [count, setCount] = useState(0);
 
@@ -32,7 +33,10 @@ function Cell({
         return (
           <IconChessQueen
             style={{
-              color: isRowForbidden | isColForbidden | isCornerForbidden ? 'red' : 'white',
+              color:
+                isRowForbidden | isColForbidden | isCornerForbidden
+                  ? '#FFA500'
+                  : 'white',
             }}
           />
         );
@@ -42,7 +46,11 @@ function Cell({
   };
 
   return (
-    <button className='styled-button' onClick={handleClick}>
+    <button
+      style={{ backgroundColor: color }}
+      className='styled-button'
+      onClick={handleClick}
+    >
       {renderIcon()}
     </button>
   );

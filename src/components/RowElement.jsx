@@ -11,6 +11,17 @@ function RowElement({
   isColForbidden,
   rules,
 }) {
+  const colorMatrix = [
+    ['#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#8B0000'],
+    ['#2F4F4F', '#556B2F', '#556B2F', '#556B2F', '#8B4513', '#8B0000', '#8B0000', '#8B0000'],
+    ['#2F4F4F', '#556B2F', '#242424', '#242424', '#8B4513', '#483D8B', '#483D8B', '#483D8B'],
+    ['#2F4F4F', '#556B2F', '#242424', '#242424', '#8B4513', '#8B4513', '#8B4513', '#483D8B'],
+    ['#2F4F4F', '#4B0082', '#242424', '#242424', '#242424', '#242424', '#006400', '#483D8B'],
+    ['#2F4F4F', '#4B0082', '#242424', '#242424', '#242424', '#242424', '#006400', '#2F4F4F'],
+    ['#2F4F4F', '#4B0082', '#4B0082', '#4B0082', '#006400', '#006400', '#006400', '#2F4F4F'],
+    ['#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F', '#2F4F4F']
+  ];
+  
   useEffect(() => {
     console.log('Rules changed');
   }, [rules]);
@@ -47,6 +58,7 @@ function RowElement({
           isRowForbidden={isRowForbidden}
           isColForbidden={isColForbidden(index + 1)}
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
+          color={colorMatrix[indexRow][index]}
         />
       ))}
     </div>
