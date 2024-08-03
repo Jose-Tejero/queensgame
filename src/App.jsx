@@ -4,11 +4,10 @@ import RowElement from './components/RowElement';
 
 function App() {
   const initialQueens = [
-    { indexRow: 1, indexCol: 2 },
-    { indexRow: 2, indexCol: 7 },
+    { indexRow: 4, indexCol: 5 },
   ];
 
-  const [matrix, setMatrix] = useState(9);
+  const [matrix, setMatrix] = useState(8);
   const [queenPosition, setQueenPosition] = useState(initialQueens);
   const [polarQueen, setPolarQueen] = useState([]);
   const [queenColor, setQueenColor] = useState(['#8B0000', '#2E8B57']);
