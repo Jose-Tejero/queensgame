@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
 import IconChessQueen from '../icons/IconChessQueen';
 import IconCross from '../icons/IconCross';
+import useCount from '../hooks/useCount';
 
 function Cell({
   indexCol,
@@ -15,18 +15,13 @@ function Cell({
   isBlocked,
   isColorForbidden,
 }) {
-  const [count, setCount] = useState(inicialState);
-
-  const handleClick = () => {
-    const newCount = (count + 1) % 3;
-    setCount(newCount);
-    if (newCount === 2 && onQueenRendered) {
-      onQueenRendered(indexCol, color);
-    }
-    if (newCount === 0 && onRemoveQueen) {
-      onRemoveQueen(indexCol, color);
-    }
-  };
+  const { count, handleClick } = useCount(
+    inicialState,
+    onQueenRendered,
+    onRemoveQueen,
+    indexCol,
+    color
+  );
 
   const renderIcon = () => {
     switch (count) {
@@ -37,7 +32,10 @@ function Cell({
           <IconChessQueen
             style={{
               color:
-                isRowForbidden | isColForbidden | isCornerForbidden | isColorForbidden
+                isRowForbidden |
+                isColForbidden |
+                isCornerForbidden |
+                isColorForbidden
                   ? '#FFA500'
                   : 'white',
             }}

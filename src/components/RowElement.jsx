@@ -17,7 +17,7 @@ function RowElement({
   isColorForbidden,
 }) {
   useEffect(() => {
-    console.log('Rules changed', rules);
+    console.log('Rules changed');
   }, [rules]);
 
   const handleQueenRendered = (indexCol, color) => {
@@ -61,10 +61,10 @@ function RowElement({
           isRowForbidden={isRowForbidden}
           isColForbidden={isColForbidden(index + 1)}
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
-          color={mapaPrototipo[indexRow][index]}
+          color={mapa94[indexRow][index]}
           inicialState={handleQueenInicialState(indexRow, index)}
           isBlocked={handleQueenInicialState(indexRow, index)}
-          isColorForbidden={isColorForbidden(mapaPrototipo[indexRow][index])}
+          isColorForbidden={isColorForbidden(mapa94[indexRow][index])}
         />
       ))}
     </div>

@@ -3,15 +3,12 @@ import { useEffect, useState } from 'react';
 import RowElement from './components/RowElement';
 
 function App() {
-  // const initialQueens = [
-  //   { indexRow: 1, indexCol: 2 },
-  //   { indexRow: 2, indexCol: 7 },
-  // ];
   const initialQueens = [
     { indexRow: 1, indexCol: 2 },
+    { indexRow: 2, indexCol: 7 },
   ];
 
-  const [count, setCount] = useState(4);
+  const [matrix, setMatrix] = useState(9);
   const [queenPosition, setQueenPosition] = useState(initialQueens);
   const [polarQueen, setPolarQueen] = useState([]);
   const [queenColor, setQueenColor] = useState(['#8B0000', '#2E8B57']);
@@ -127,13 +124,13 @@ function App() {
     <>
       <h1>Queen's game</h1>
       <div className='card'>
-        {Array.from({ length: count }).map((_, index) => (
+        {Array.from({ length: matrix }).map((_, index) => (
           <RowElement
             key={index}
             indexRow={index}
             onQueenRenderedPrincipal={handleQueenRenderedPrincipal}
             onRemoveQueenPrincipal={handleRemoveQueenPrincipal}
-            numCells={count}
+            numCells={matrix}
             isRowForbidden={isRowForbidden(index + 1)}
             isColForbidden={isColForbidden}
             rules={rules}
