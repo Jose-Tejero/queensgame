@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useCount = (
+export const useCount = (
   initialState,
   onQueenRendered,
   onRemoveQueen,
@@ -22,5 +22,3 @@ const useCount = (
 
   return { count, handleClick };
 };
-
-export default useCount;

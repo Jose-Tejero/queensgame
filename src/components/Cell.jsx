@@ -1,8 +1,8 @@
 import * as React from 'react';
-import useCount from '../hooks/useCount';
-import RenderIcon from './RenderIcon';
+import { useCount } from '../hooks/useCount';
+import { RenderIcon } from './RenderIcon';
 
-function Cell({
+export function Cell({
   indexCol,
   onQueenRendered,
   onRemoveQueen,
@@ -29,15 +29,13 @@ function Cell({
       onClick={handleClick}
       disabled={isBlocked}
     >
-      {RenderIcon(
-        count,
-        isRowForbidden,
-        isColForbidden,
-        isCornerForbidden,
-        isColorForbidden
-      )}
+      <RenderIcon
+        count={count}
+        isRowForbidden={isRowForbidden}
+        isColForbidden={isColForbidden}
+        isCornerForbidden={isCornerForbidden}
+        isColorForbidden={isColorForbidden}
+      />
     </button>
   );
 }
-
-export default Cell;

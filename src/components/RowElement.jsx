@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Cell from './Cell';
+import { Cell } from './Cell';
 import { useEffect } from 'react';
 import mapa95 from '../maps/mapa95';
 
-function RowElement({
+export function RowElement({
   numCells,
   indexRow,
   onQueenRenderedPrincipal,
@@ -68,5 +68,3 @@ function RowElement({
     </div>
   );
 }
-
-export default RowElement;

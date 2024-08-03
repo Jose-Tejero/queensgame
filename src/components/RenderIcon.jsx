@@ -2,13 +2,13 @@ import React from 'react';
 import IconChessQueen from '../icons/IconChessQueen';
 import IconCross from '../icons/IconCross';
 
-const RenderIcon = (
+export function RenderIcon({
   count,
   isRowForbidden,
   isColForbidden,
   isCornerForbidden,
-  isColorForbidden
-) => {
+  isColorForbidden,
+}) {
   switch (count) {
     case 1:
       return <IconCross />;
@@ -29,6 +29,4 @@ const RenderIcon = (
     default:
       return null;
   }
-};
-
-export default RenderIcon;
+}

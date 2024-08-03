@@ -1,11 +1,9 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import RowElement from './components/RowElement';
+import { RowElement } from './components/RowElement';
 
 function App() {
-  const initialQueens = [
-    { indexRow: 1, indexCol: 6 },
-  ];
+  const initialQueens = [{ indexRow: 1, indexCol: 6 }];
 
   const [matrix, setMatrix] = useState(8);
   const [queenPosition, setQueenPosition] = useState(initialQueens);
