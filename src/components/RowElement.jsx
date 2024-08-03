@@ -1,10 +1,7 @@
 import * as React from 'react';
 import Cell from './Cell';
 import { useEffect } from 'react';
-import mapa74 from '../maps/mapa74';
-import mapa93 from '../maps/mapa93';
-import mapa94 from '../maps/mapa94';
-import mapaPrototipo from '../maps/mapaPrototipo';
+import mapa95 from '../maps/mapa95';
 
 function RowElement({
   numCells,
@@ -62,10 +59,10 @@ function RowElement({
           isRowForbidden={isRowForbidden}
           isColForbidden={isColForbidden(index + 1)}
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
-          color={mapa74[indexRow][index]}
+          color={mapa95[indexRow][index]}
           inicialState={handleQueenInicialState(indexRow, index)}
           isBlocked={handleQueenInicialState(indexRow, index)}
-          isColorForbidden={isColorForbidden(mapa74[indexRow][index])}
+          isColorForbidden={isColorForbidden(mapa95[indexRow][index])}
         />
       ))}
     </div>

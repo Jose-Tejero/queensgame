@@ -4,7 +4,7 @@ import RowElement from './components/RowElement';
 
 function App() {
   const initialQueens = [
-    { indexRow: 4, indexCol: 5 },
+    { indexRow: 1, indexCol: 6 },
   ];
 
   const [matrix, setMatrix] = useState(8);
