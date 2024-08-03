@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Cell from './Cell';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import mapa93 from '../maps/mapa93';
 import mapa94 from '../maps/mapa94';
 import mapaPrototipo from '../maps/mapaPrototipo';

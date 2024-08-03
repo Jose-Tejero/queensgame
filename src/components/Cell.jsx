@@ -1,7 +1,6 @@
 import * as React from 'react';
-import IconChessQueen from '../icons/IconChessQueen';
-import IconCross from '../icons/IconCross';
 import useCount from '../hooks/useCount';
+import RenderIcon from './RenderIcon';
 
 function Cell({
   indexCol,
@@ -23,29 +22,6 @@ function Cell({
     color
   );
 
-  const renderIcon = () => {
-    switch (count) {
-      case 1:
-        return <IconCross />;
-      case 2:
-        return (
-          <IconChessQueen
-            style={{
-              color:
-                isRowForbidden |
-                isColForbidden |
-                isCornerForbidden |
-                isColorForbidden
-                  ? '#FFA500'
-                  : 'white',
-            }}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <button
       style={{ backgroundColor: color }}
@@ -53,7 +29,13 @@ function Cell({
       onClick={handleClick}
       disabled={isBlocked}
     >
-      {renderIcon()}
+      {RenderIcon(
+        count,
+        isRowForbidden,
+        isColForbidden,
+        isCornerForbidden,
+        isColorForbidden
+      )}
     </button>
   );
 }
