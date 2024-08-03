@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import RowElement from './components/RowElement';
 
 function App() {
+  // const initialQueens = [
+  //   { indexRow: 1, indexCol: 2 },
+  //   { indexRow: 2, indexCol: 7 },
+  // ];
   const initialQueens = [
     { indexRow: 1, indexCol: 2 },
-    { indexRow: 2, indexCol: 7 },
   ];
 
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(4);
   const [queenPosition, setQueenPosition] = useState(initialQueens);
   const [polarQueen, setPolarQueen] = useState([]);
   const [queenColor, setQueenColor] = useState(['#8B0000', '#2E8B57']);
@@ -123,28 +126,14 @@ function App() {
   return (
     <>
       <h1>Queen's game</h1>
-      {/* <h2>Level</h2>
-      <button
-        onClick={() => setCount((count) => (count > 0 ? count - 1 : 0))}
-        disabled={count == 0 ? true : false}
-      >
-        -
-      </button>
-      {count}
-      <button
-        onClick={() => setCount((count) => (count < 4 ? count + 1 : 4))}
-        disabled={count == 4 ? true : false}
-      >
-        +
-      </button> */}
       <div className='card'>
-        {Array.from({ length: count + 4 }).map((_, index) => (
+        {Array.from({ length: count }).map((_, index) => (
           <RowElement
             key={index}
             indexRow={index}
             onQueenRenderedPrincipal={handleQueenRenderedPrincipal}
             onRemoveQueenPrincipal={handleRemoveQueenPrincipal}
-            numCells={count + 4}
+            numCells={count}
             isRowForbidden={isRowForbidden(index + 1)}
             isColForbidden={isColForbidden}
             rules={rules}
