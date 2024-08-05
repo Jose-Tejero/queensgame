@@ -14,9 +14,9 @@ export function RowElement({
   initialQueens,
   isColorForbidden,
 }) {
-  useEffect(() => {
-    console.log('Rules changed');
-  }, [rules]);
+  // useEffect(() => {
+  //   console.log('Rules changed');
+  // }, [rules]);
 
   const handleQueenRendered = (indexCol, color) => {
     onQueenRenderedPrincipal(indexRow, indexCol, color);
