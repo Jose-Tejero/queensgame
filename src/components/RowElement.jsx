@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Cell } from './Cell';
-import { useEffect } from 'react';
-import mapa95 from '../maps/mapa95';
+import mapa97 from '../maps/mapa97';
 
 export function RowElement({
   numCells,
@@ -14,9 +13,6 @@ export function RowElement({
   initialQueens,
   isColorForbidden,
 }) {
-  // useEffect(() => {
-  //   console.log('Rules changed');
-  // }, [rules]);
 
   const handleQueenRendered = (indexCol, color) => {
     onQueenRenderedPrincipal(indexRow, indexCol, color);
@@ -59,10 +55,10 @@ export function RowElement({
           isRowForbidden={isRowForbidden}
           isColForbidden={isColForbidden(index + 1)}
           isCornerForbidden={handleSetCornerForbidden(indexRow + 1, index + 1)}
-          color={mapa95[indexRow][index]}
+          color={mapa97[indexRow][index]}
           inicialState={handleQueenInicialState(indexRow, index)}
           isBlocked={handleQueenInicialState(indexRow, index)}
-          isColorForbidden={isColorForbidden(mapa95[indexRow][index])}
+          isColorForbidden={isColorForbidden(mapa97[indexRow][index])}
         />
       ))}
     </div>
