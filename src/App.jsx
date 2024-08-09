@@ -18,9 +18,9 @@ function App() {
   return (
     <>
       <h1>Queen's game</h1>
-      <button onClick={() => console.log('Resetear tablero de mentirita')}>
+      {/* <button onClick={() => console.log('Resetear tablero de mentirita')}>
         Reset
-      </button>
+      </button> */}
       <div className='card'>
         {Array.from({ length: matrix }).map((_, index) => (
           <RowElement

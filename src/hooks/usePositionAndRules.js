@@ -12,7 +12,7 @@ export const usePositionAndRules = () => {
   });
   const [queenPosition, setQueenPosition] = useState(initialQueens);
   const [polarQueen, setPolarQueen] = useState([]);
-  const [matrix, setMatrix] = useState(8);
+  const [matrix, setMatrix] = useState(7);
   const [queenColor, setQueenColor] = useState([]);
 
   useEffect(() => {
