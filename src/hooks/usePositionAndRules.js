@@ -14,6 +14,7 @@ export const usePositionAndRules = () => {
   const [polarQueen, setPolarQueen] = useState([]);
   const [matrix, setMatrix] = useState(7);
   const [queenColor, setQueenColor] = useState([]);
+  const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     setRules({
@@ -115,14 +116,29 @@ export const usePositionAndRules = () => {
     return count > 1;
   };
 
+  const resetBoard = () => {
+    setQueenPosition(initialQueens);
+    setRules({
+      topLeftCornerForbidden: [],
+      topRightCornerForbidden: [],
+      bottomLeftCornerForbidden: [],
+      bottomRightCornerForbidden: [],
+      colorForbidden: [],
+    });
+    setResetKey((prevKey) => prevKey + 1);
+    console.log('Resetear tablero de mentirita', rules);
+  };
+
   return {
     handleQueenRenderedPrincipal,
     handleRemoveQueenPrincipal,
     isRowForbidden,
     isColForbidden,
     isColorForbidden,
+    resetBoard,
     matrix,
     rules,
     initialQueens,
+    resetKey,
   };
 };
